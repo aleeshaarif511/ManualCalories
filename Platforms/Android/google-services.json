@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "638037251971",
+    "project_id": "ims-cgm-app",
+    "storage_bucket": "ims-cgm-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638037251971:android:8decb8abaa3781db5d88b6",
+        "android_client_info": {
+          "package_name": "com.companyname.ims_cgm_mobile_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLTWEiP3bjUyRpJW-Q_Oi4cdUqOi0ycIM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638037251971:android:2920ba6901ca8e295d88b6",
+        "android_client_info": {
+          "package_name": "com.companyname.imscgmmobileapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLTWEiP3bjUyRpJW-Q_Oi4cdUqOi0ycIM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

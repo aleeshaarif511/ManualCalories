@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:IMS_CGM_Mobile_App.ViewModels"
+             x:Class="IMS_CGM_Mobile_App.Views.ManualHealthInputPage"
+             Title="Manual Health Input">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+
+            <Label Text="Entry Type" FontSize="18" />
+           <Picker Title="Select Entry Type">
+    <Picker.Items>
+        <x:String>BloodPressure</x:String>
+        <x:String>BloodSugar</x:String>
+        <x:String>Weight</x:String>
+        <x:String>Temperature</x:String>
+        <x:String>Other</x:String>
+    </Picker.Items>
+</Picker>
+
+
+
+            <Entry Placeholder="Details (e.g., meal type)"
+                   Text="{Binding CurrentEntry.Details}" />
+
+            <Entry Placeholder="Value (e.g., calories, units)"
+                   Keyboard="Numeric"
+                   Text="{Binding CurrentEntry.Value}" />
+
+            <Editor Placeholder="Notes (optional)"
+                    AutoSize="TextChanges"
+                    Text="{Binding CurrentEntry.Notes}" />
+
+            <Button Text="Save Entry"
+                    Command="{Binding SaveEntryCommand}"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    CornerRadius="10" />
+
+            <Label Text="Recent Entries" FontSize="18" Margin="0,20,0,0" />
+
+            <CollectionView ItemsSource="{Binding Entries}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="#DDD" CornerRadius="10" Padding="10" Margin="0,5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Type}" FontAttributes="Bold" />
+                                <Label Text="{Binding Details}" />
+                                <Label Text="{Binding Value}" />
+                                <Label Text="{Binding TimeStamp}" FontSize="12" TextColor="Gray"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
