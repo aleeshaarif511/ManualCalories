@@ -10,10 +10,27 @@ public class FirebaseService
 
     public async Task AddHealthEntryAsync(HealthEntry entry)
     {
-        var json = JsonSerializer.Serialize(entry);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        Console.WriteLine("[Firebase] Attempting to connect and insert data...");
+        try
+        {
+            var json = JsonSerializer.Serialize(entry);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-        using var client = new HttpClient();
-        await client.PostAsync(_firebaseUrl, content);
+            using var client = new HttpClient();
+            var response = await client.PostAsync(_firebaseUrl, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("[Firebase] Data successfully inserted into Firebase Realtime Database.");
+            }
+            else
+            {
+                Console.WriteLine($"[Firebase] Failed to insert data. Status: {response.StatusCode}, Reason: {response.ReasonPhrase}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[Firebase] Exception occurred: {ex.Message}");
+        }
     }
 }

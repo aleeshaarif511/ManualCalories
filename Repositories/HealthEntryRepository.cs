@@ -1,5 +1,6 @@
+using Firebase.Database;
+using Firebase.Database.Query;
 using IMS_CGM_Mobile_App.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace IMS_CGM_Mobile_App.Repositories;
 
@@ -11,21 +12,16 @@ public interface IHealthEntryRepository
 
 public class HealthEntryRepository : IHealthEntryRepository
 {
-    private readonly AppDbContext _context;
-
-    public HealthEntryRepository(AppDbContext context)
-    {
-        _context = context ?? throw new ArgumentNullException(nameof(context));
-    }
+    private readonly FirebaseClient _client = new FirebaseClient("https://ims-cgm-app-default-rtdb.firebaseio.com/");
 
     public async Task AddEntryAsync(HealthEntry entry)
     {
-        _context.HealthEntries.Add(entry);
-        await _context.SaveChangesAsync();
+        await _client.Child("healthEntries").PostAsync(entry);
     }
 
     public async Task<List<HealthEntry>> GetAllEntriesAsync()
     {
-        return await _context.HealthEntries.OrderByDescending(e => e.TimeStamp).ToListAsync();
+        var entries = await _client.Child("healthEntries").OnceAsync<HealthEntry>();
+        return entries.Select(e => e.Object).ToList();
     }
 }

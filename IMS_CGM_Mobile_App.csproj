@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>net8.0-android</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+
 
     <!-- RuntimeIdentifiers for Android only -->
     <RuntimeIdentifiers>android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
@@ -39,6 +41,7 @@
   </ItemGroup>
 
  <ItemGroup>
+    <PackageReference Include="Firebase.Database" Version="1.0.0" />
     <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
     <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
