@@ -1,1 +1,0 @@
-C:\Users\hp\IMS_CGM_Mobile_App\bin\Release\net8.0-android\publish\_Microsoft.Android.Resource.Designer.dll

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IMS_CGM_Mobile_App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+821193d320f36c88d19ae1a290680b2ef5179e40")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+a038040dd04e67cdebae651ab61699d391c291ef")]
 [assembly: System.Reflection.AssemblyProductAttribute("IMS_CGM_Mobile_App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IMS_CGM_Mobile_App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

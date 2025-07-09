@@ -14,12 +14,15 @@ public class ManualHealthInputViewModel : INotifyPropertyChanged
     public ObservableCollection<HealthEntry> Entries { get; set; } = new();
 
     public ICommand SaveEntryCommand { get; }
+    public ICommand ShowEntryDetailCommand { get; }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
     public ManualHealthInputViewModel()
     {
         SaveEntryCommand = new Command(async () => await SaveEntryAsync());
+        ShowEntryDetailCommand = new Command<HealthEntry>(ShowEntryDetail);
+        _ = LoadEntriesAsync();
     }
 
     public async Task SaveEntryAsync()
@@ -34,10 +37,24 @@ public class ManualHealthInputViewModel : INotifyPropertyChanged
         };
 
         await _firebaseService.AddHealthEntryAsync(entry);
-        Entries.Add(entry);
+        await LoadEntriesAsync();
 
         // Reset for new entry
         CurrentEntry = new HealthEntry();
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentEntry)));
+    }
+
+    public async Task LoadEntriesAsync()
+    {
+        var loaded = await _firebaseService.GetHealthEntriesAsync();
+        Entries.Clear();
+        foreach (var e in loaded)
+            Entries.Add(e);
+    }
+
+    private void ShowEntryDetail(HealthEntry entry)
+    {
+        // TODO: Implement a popup or navigation to a detail page
+        // For now, display an alert (if using Shell or pass callback to View)
     }
 }

@@ -33,4 +33,24 @@ public class FirebaseService
             Console.WriteLine($"[Firebase] Exception occurred: {ex.Message}");
         }
     }
+
+    public async Task<List<HealthEntry>> GetHealthEntriesAsync()
+    {
+        try
+        {
+            using var client = new HttpClient();
+            var response = await client.GetAsync(_firebaseUrl);
+            if (!response.IsSuccessStatusCode)
+                return new List<HealthEntry>();
+            var json = await response.Content.ReadAsStringAsync();
+            if (string.IsNullOrWhiteSpace(json) || json == "null")
+                return new List<HealthEntry>();
+            var dict = JsonSerializer.Deserialize<Dictionary<string, HealthEntry>>(json);
+            return dict?.Values.ToList() ?? new List<HealthEntry>();
+        }
+        catch
+        {
+            return new List<HealthEntry>();
+        }
+    }
 }

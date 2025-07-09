@@ -7,17 +7,15 @@
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="10">
 
-            <Label Text="Entry Type" FontSize="18" />
-           <Picker Title="Select Entry Type">
-    <Picker.Items>
-        <x:String>BloodPressure</x:String>
-        <x:String>BloodSugar</x:String>
-        <x:String>Weight</x:String>
-        <x:String>Temperature</x:String>
-        <x:String>Other</x:String>
-    </Picker.Items>
-</Picker>
-
+            <Label Text="Meal Type" FontSize="18" />
+            <Picker Title="Select Meal Type" SelectedItem="{Binding CurrentEntry.Type}">
+                <Picker.Items>
+                    <x:String>Yogurt</x:String>
+                    <x:String>Tea</x:String>
+                    <x:String>Chicken</x:String>
+                    <x:String>Salad</x:String>
+                </Picker.Items>
+            </Picker>
 
 
             <Entry Placeholder="Details (e.g., meal type)"
@@ -43,10 +41,14 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame BorderColor="#DDD" CornerRadius="10" Padding="10" Margin="0,5">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.ShowEntryDetailCommand, Source={x:Reference Name=ManualHealthInputPage}}" CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
                             <VerticalStackLayout>
                                 <Label Text="{Binding Type}" FontAttributes="Bold" />
                                 <Label Text="{Binding Details}" />
                                 <Label Text="{Binding Value}" />
+                                <Label Text="{Binding Notes}" FontAttributes="Italic" TextColor="DarkSlateGray" />
                                 <Label Text="{Binding TimeStamp}" FontSize="12" TextColor="Gray"/>
                             </VerticalStackLayout>
                         </Frame>

@@ -1,0 +1,3 @@
+/Users/apple/Desktop/ManualCalories/apk-output/com.companyname.imscgmmobileapp-Signed.apk
+/Users/apple/Desktop/ManualCalories/apk-output/com.companyname.imscgmmobileapp.apk
+/Users/apple/Desktop/ManualCalories/apk-output/_Microsoft.Android.Resource.Designer.dll
